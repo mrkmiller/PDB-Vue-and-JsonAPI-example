@@ -1,0 +1,11 @@
+name: Directory
+machine_name: directory
+type: pdb
+description: 'Vue Example of a Person Directory using Webpack 2 to compile .vue components into a single build.js file'
+package: Vue
+core: '8.x'
+module_status: active
+presentation: vue
+add_js:
+  footer:
+    'dist/build.js': {}
