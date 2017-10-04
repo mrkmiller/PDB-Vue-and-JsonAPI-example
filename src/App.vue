@@ -7,10 +7,11 @@
 <script>
 import PersonTeaser from './components/PersonTeaser.vue'
 import PersonListing from './components/PersonListing.vue'
+import PersonCard from './components/PersonCard.vue'
 
 export default {
   name: 'app-directory',
-  components: { PersonTeaser, PersonListing },
+  components: { PersonTeaser, PersonListing, PersonCard },
   data () {
     return {
       people: []
