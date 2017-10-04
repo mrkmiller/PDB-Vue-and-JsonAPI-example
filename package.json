@@ -1,6 +1,6 @@
 {
   "name": "directory",
-  "description": "A directory of Person's on a SiteFarm site",
+  "description": "A directory of Persons on a SiteFarm site",
   "version": "1.0.0",
   "author": "Mark Miller <mrkmiller@ucdavis.edu>",
   "private": true,

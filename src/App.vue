@@ -43,7 +43,6 @@ export default {
           let n;
           for (n = 0; n < included.length; n++) {
             if (included[n].id === imageId) {
-              console.log(this.people[i]);
               this.people[i].included = included[n];
             }
           }

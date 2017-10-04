@@ -1,6 +1,6 @@
 # directory
 
-> A directory of Person's on a SiteFarm site
+> A directory of Persons on a SiteFarm site
 
 ## Build Setup
 
