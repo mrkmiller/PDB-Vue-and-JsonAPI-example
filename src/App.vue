@@ -1,6 +1,14 @@
 <template>
   <div id="app-directory">
-    <person-teaser v-for="person in people" :person="person" :key="person.id"></person-teaser>
+    <div class="u-space-bottom">
+      <label for="displaypicker">Select how to display people:</label>
+      <select v-model="currentView" id="displaypicker">
+        <option value="person-teaser">Teaser</option>
+        <option value="person-listing">Listing</option>
+        <option value="person-card">Card</option>
+      </select>
+    </div>
+    <component :is="currentView" v-for="person in people" :person="person" :key="person.id"></component>
   </div>
 </template>
 
@@ -14,7 +22,8 @@ export default {
   components: { PersonTeaser, PersonListing, PersonCard },
   data () {
     return {
-      people: []
+      people: [],
+      currentView: 'person-teaser'
     }
   },
   created () {
