@@ -1,10 +1,10 @@
 <template>
   <article class="o-media vm-teaser" :class="{'vm-teaser--featured': person.attributes.field_sf_featured_status}">
     <div class="o-media__figure vm-teaser__figure category category-brand__thumbnail" v-if="person.included">
-      <a :href="personLink"><img :src="person.included.attributes.url" :alt="person.relationships.field_sf_primary_image.data.meta.alt" /></a>
+      <a :href="person.path"><img :src="person.included.attributes.url" :alt="person.relationships.field_sf_primary_image.data.meta.alt" /></a>
     </div>
     <div class="o-media__body">
-      <h3 class="vm-teaser__title"><a :href="personLink">{{ person.attributes.title }}</a></h3>
+      <h3 class="vm-teaser__title"><a :href="person.path">{{ person.attributes.title }}</a></h3>
       <ul class="vm-teaser__position" v-if="person.attributes.field_sf_position_title || person.attributes.field_sf_unit">
         <li><b>{{ person.attributes.field_sf_position_title }}</b></li>
         <li v-for="unit in person.attributes.field_sf_unit">{{ unit }}</li>
@@ -21,7 +21,7 @@
           <a class="icon icon--link icon--web" :href="website.uri">{{ website.uri }}</a>
         </li>
         <li>
-          <a class="icon icon--link icon--view-more" :href="personLink">View Listing</a>
+          <a class="icon icon--link icon--view-more" :href="person.path">View Listing</a>
         </li>
       </ul>
       <div class="icon icon--location" v-if="person.attributes.field_sf_office_location">{{ person.attributes.field_sf_office_location }}</div>
@@ -36,11 +36,6 @@
 
   export default {
     components: { AddressDisplay },
-    props: ['person'],
-    computed: {
-      personLink () {
-        return '/node/' + this.person.attributes.nid;
-      }
-    }
+    props: ['person']
   }
 </script>

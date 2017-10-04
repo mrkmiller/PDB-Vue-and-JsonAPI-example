@@ -26,8 +26,10 @@ export default {
         .then(response => response.json())
         .then(result => {
         this.people = result.data;
-        // Add the Includes to the data
+        // Add the Includes to the data.
         this.applyIncludes(result.included);
+        // Add the path since JsonAPI doesn't include one.
+        this.createMissingPath();
       });
     },
 
@@ -47,6 +49,12 @@ export default {
             }
           }
         }
+      }
+    },
+
+    createMissingPath () {
+      for (let i = 0; i < this.people.length; i++) {
+        this.people[i].path = '/node/' + this.people[i].attributes.nid;
       }
     }
   }
