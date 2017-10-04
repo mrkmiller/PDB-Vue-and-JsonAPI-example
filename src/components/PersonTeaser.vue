@@ -25,7 +25,7 @@
         </li>
       </ul>
       <div class="icon icon--location" v-if="person.attributes.field_sf_office_location">{{ person.attributes.field_sf_office_location }}</div>
-      <div class="icon icon--map u-space-bottom--small" v-if="person.attributes.field_sf_address"><address-display :address="person.attributes.field_sf_address"></address-display></div>
+      <address-display class="icon icon--map u-space-bottom--small" v-if="person.attributes.field_sf_address" :address="person.attributes.field_sf_address"></address-display>
       <div class="text--smaller" v-if="person.attributes.field_sf_office_hours"><strong>Office Hours</strong> {{ person.attributes.field_sf_office_hours }}</div>
     </div>
   </article>
