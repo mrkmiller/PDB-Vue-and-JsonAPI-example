@@ -1,10 +1,10 @@
 <template>
   <div class="vm-listing o-media">
-    <div class="o-media__figure" v-if="person.included">
-      <a :href="person.path" class="category-brand__thumbnail"><img :src="person.included.attributes.url" :alt="person.relationships.field_sf_primary_image.data.meta.alt" /></a>
+    <div class="o-media__figure" v-if="person.field_sf_primary_image">
+      <a :href="person.path.alias" class="category-brand__thumbnail"><img :src="person.field_sf_primary_image.url" :alt="person.title" /></a>
     </div>
     <div class="o-media__body">
-      <h3 class="vm-listing__title"><a :href="person.path">{{ person.attributes.title }}</a></h3>
+      <h3 class="vm-listing__title"><a :href="person.path.alias">{{ person.title }}</a></h3>
     </div>
   </div>
 </template>

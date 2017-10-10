@@ -16,6 +16,7 @@
 import PersonTeaser from './components/PersonTeaser.vue'
 import PersonListing from './components/PersonListing.vue'
 import PersonCard from './components/PersonCard.vue'
+import jsonapiParse from 'jsonapi-parse';
 
 export default {
   name: 'app-directory',
@@ -36,37 +37,8 @@ export default {
       fetch(url)
         .then(response => response.json())
         .then(result => {
-        this.people = result.data;
-        // Add the Includes to the data.
-        this.applyIncludes(result.included);
-        // Add the path since JsonAPI doesn't include one.
-        this.createMissingPath();
+          this.people = jsonapiParse.parse(result).data;
       });
-    },
-
-    applyIncludes (included) {
-      // Take the includes from the jsonapi return which contain images and add
-      // them to the Person object
-      let i;
-      for (i = 0; i < this.people.length; i++) {
-        if (this.people[i].relationships.field_sf_primary_image.data) {
-          let imageId = this.people[i].relationships.field_sf_primary_image.data.id;
-
-          // Now find the relationship included and attach it to the person
-          let n;
-          for (n = 0; n < included.length; n++) {
-            if (included[n].id === imageId) {
-              this.people[i].included = included[n];
-            }
-          }
-        }
-      }
-    },
-
-    createMissingPath () {
-      for (let i = 0; i < this.people.length; i++) {
-        this.people[i].path = '/node/' + this.people[i].attributes.nid;
-      }
     }
   }
 }
