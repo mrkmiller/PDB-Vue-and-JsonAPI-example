@@ -1,23 +1,29 @@
 <template>
   <div id="app-directory">
-    <div class="u-space-bottom">
-      <label for="displaypicker">Select how to display people:</label>
-      <select v-model="currentView" id="displaypicker">
-        <option value="person-teaser">Teaser</option>
-        <option value="person-listing">Listing</option>
-        <option value="person-card">Card</option>
-      </select>
+    <section v-if="!detail">
+      <div class="u-space-bottom">
+        <label for="displaypicker">Select how to display people:</label>
+        <select v-model="currentView" id="displaypicker">
+          <option value="person-teaser">Teaser</option>
+          <option value="person-listing">Listing</option>
+          <option value="person-card">Card</option>
+        </select>
 
-      <div class="search-form">
-        <label for="search-field" class="u-hidden--visually">Search</label>
-        <input type="input" placeholder="Search by Name..." id="search-field" class="search-form__input" v-model="nameFilter" @keyup.enter="filterList()">
-        <input type="image" class="search-form__submit" alt="Search" @click.prevent="filterList()">
+        <div class="search-form">
+          <label for="search-field" class="u-hidden--visually">Search</label>
+          <input type="input" placeholder="Search by Name..." id="search-field" class="search-form__input" v-model="nameFilter" @keyup.enter="filterList()">
+          <input type="image" class="search-form__submit" alt="Search" @click.prevent="filterList()">
+        </div>
+
       </div>
-
-    </div>
-    <div v-if="loading">Loading...</div>
-    <component :is="currentView" v-for="person in people" :person="person" :key="person.id"></component>
-    <div v-if="!people.length" class="alert alert--error">Sorry! There are no people matching <strong>"{{ searchedValue }}"</strong></div>
+      <div v-if="loading">Loading...</div>
+      <component :is="currentView" v-for="person in people" :person="person" :key="person.id" @clicked-show-detail="showDetail"></component>
+      <div v-if="!people.length" class="alert alert--error">Sorry! There are no people matching <strong>"{{ searchedValue }}"</strong></div>
+    </section>
+    <section v-if="detail">
+      <button @click="backToListings()">Back to Listings</button>
+      <person-detail :person="detail"></person-detail>
+    </section>
   </div>
 </template>
 
@@ -25,18 +31,20 @@
 import PersonTeaser from './components/PersonTeaser.vue'
 import PersonListing from './components/PersonListing.vue'
 import PersonCard from './components/PersonCard.vue'
+import PersonDetail from './components/PersonDetail.vue'
 import jsonapiParse from 'jsonapi-parse';
 
 export default {
   name: 'app-directory',
-  components: { PersonTeaser, PersonListing, PersonCard },
+  components: { PersonTeaser, PersonListing, PersonCard, PersonDetail },
   data () {
     return {
       people: [],
       loading: true,
       currentView: 'person-teaser',
       nameFilter: '',
-      searchedValue: ''
+      searchedValue: '',
+      detail: ''
     }
   },
   created () {
@@ -66,6 +74,14 @@ export default {
       this.loading = true;
       this.searchedValue = this.nameFilter;
       this.getPeople();
+    },
+
+    backToListings () {
+      this.detail = '';
+    },
+
+    showDetail (id) {
+      this.detail = this.people.find((person) => person.id === id);
     }
   }
 }

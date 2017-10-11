@@ -21,7 +21,7 @@
           <a class="icon icon--link icon--web" :href="website.uri">{{ website.uri }}</a>
         </li>
         <li>
-          <a class="icon icon--link icon--view-more" :href="person.path.alias">View Listing</a>
+          <a class="icon icon--link icon--view-more" :href="person.path.alias" @click.prevent="showDetail()">View Listing</a>
         </li>
       </ul>
       <div class="icon icon--location" v-if="person.field_sf_office_location">{{ person.field_sf_office_location }}</div>
@@ -36,6 +36,11 @@
 
   export default {
     components: { AddressDisplay },
-    props: ['person']
+    props: ['person'],
+    methods: {
+      showDetail () {
+        this.$emit('clicked-show-detail', this.person.id);
+      }
+    }
   }
 </script>

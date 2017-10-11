@@ -14,14 +14,19 @@
     <div class="vm-card__summary" v-if="person.body" v-html="person.body.summary"></div>
 
     <footer class="vm-card__btn">
-      <a :href="person.path.alias" class="btn btn--sm">View Listing</a>
+      <a :href="person.path.alias" class="btn btn--sm" @click.prevent="showDetail()">View Listing</a>
     </footer>
   </section>
 </template>
 
 <script>
   export default {
-    props: ['person']
+    props: ['person'],
+    methods: {
+      showDetail () {
+        this.$emit('clicked-show-detail', this.person.id);
+      }
+    }
   }
 </script>
 
