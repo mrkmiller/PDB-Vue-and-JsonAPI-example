@@ -8,20 +8,20 @@
           <option value="person-listing">Listing</option>
           <option value="person-card">Card</option>
         </select>
-
-        <div class="search-form">
-          <label for="search-field" class="u-hidden--visually">Search</label>
-          <input type="input" placeholder="Search by Name..." id="search-field" class="search-form__input" v-model="nameFilter" @keyup.enter="filterList()">
-          <input type="image" class="search-form__submit" alt="Search" @click.prevent="filterList()">
-        </div>
-
       </div>
+
+      <div class="search-form u-space-bottom">
+        <label for="search-field" class="u-hidden--visually">Search</label>
+        <input type="input" placeholder="Search by Name..." id="search-field" class="search-form__input" v-model="nameFilter" @keyup.enter="filterList()">
+        <input type="image" class="search-form__submit" alt="Search" @click.prevent="filterList()">
+      </div>
+
       <div v-if="loading">Loading...</div>
       <component :is="currentView" v-for="person in people" :person="person" :key="person.id" @clicked-show-detail="showDetail"></component>
       <div v-if="!people.length" class="alert alert--error">Sorry! There are no people matching <strong>"{{ searchedValue }}"</strong></div>
     </section>
     <section v-if="detail">
-      <button @click="backToListings()">Back to Listings</button>
+      <button @click="backToListings()" class="btn">Back to Listings</button>
       <person-detail :person="detail"></person-detail>
     </section>
   </div>
