@@ -1,10 +1,10 @@
 <template>
   <article class="o-media vm-teaser" :class="{'vm-teaser--featured': person.field_sf_featured_status}">
     <div class="o-media__figure vm-teaser__figure category category-brand__thumbnail" v-if="person.field_sf_primary_image">
-      <a :href="person.path.alias"><img :src="person.field_sf_primary_image.url" :alt="person.title" /></a>
+      <a :href="person.path.alias" @click.prevent="showDetail()"><img :src="person.field_sf_primary_image.url" :alt="person.title" /></a>
     </div>
     <div class="o-media__body">
-      <h3 class="vm-teaser__title"><a :href="person.path.alias">{{ person.title }}</a></h3>
+      <h3 class="vm-teaser__title"><a :href="person.path.alias" @click.prevent="showDetail()">{{ person.title }}</a></h3>
       <ul class="vm-teaser__position" v-if="person.field_sf_position_title || person.field_sf_unit">
         <li><b>{{ person.field_sf_position_title }}</b></li>
         <li v-for="unit in person.field_sf_unit">{{ unit }}</li>
