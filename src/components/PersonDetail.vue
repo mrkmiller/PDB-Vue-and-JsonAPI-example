@@ -1,7 +1,7 @@
 <template>
   <section>
     <div class="u-align--right u-width--one-third">
-      <img v-if="person.field_sf_primary_image" :src="person.field_sf_primary_image.url" :alt="person.title" />
+      <img v-if="person.field_sf_primary_image" :src="person.field_sf_primary_image.url" :alt="person.field_sf_primary_image.meta.alt" />
     </div>
     <h1>{{ person.title }}</h1>
     <h2>{{ person.field_sf_position_title }}</h2>

@@ -1,7 +1,7 @@
 <template>
   <article class="o-media vm-teaser" :class="{'vm-teaser--featured': person.field_sf_featured_status}">
     <div class="o-media__figure vm-teaser__figure category category-brand__thumbnail" v-if="person.field_sf_primary_image">
-      <a :href="person.path.alias" @click.prevent="showDetail()"><img :src="person.field_sf_primary_image.url" :alt="person.title" /></a>
+      <a :href="person.path.alias" @click.prevent="showDetail()"><img :src="person.field_sf_primary_image.url" :alt="person.field_sf_primary_image.meta.alt" /></a>
     </div>
     <div class="o-media__body">
       <h3 class="vm-teaser__title"><a :href="person.path.alias" @click.prevent="showDetail()">{{ person.title }}</a></h3>

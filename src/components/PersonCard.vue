@@ -2,7 +2,7 @@
   <section class="vm-card u-space-bottom">
     <header class="vm-card__header o-media">
       <div class="vm-card__figure o-media__figure" v-if="person.field_sf_primary_image">
-        <a :href="person.path.alias" @click.prevent="showDetail()"><img :src="person.field_sf_primary_image.url" :alt="person.title" /></a>
+        <a :href="person.path.alias" @click.prevent="showDetail()"><img :src="person.field_sf_primary_image.url" :alt="person.field_sf_primary_image.meta.alt" /></a>
       </div>
       <div class="o-media__body">
         <h3 class="vm-card__title"><a :href="person.path.alias" @click.prevent="showDetail()">{{ person.title }}</a></h3>

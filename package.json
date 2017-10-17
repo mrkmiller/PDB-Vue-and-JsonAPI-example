@@ -9,7 +9,7 @@
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
-    "jsonapi-parse": "^1.2.0",
+    "jsonapi-parse": "git://github.com/mrkmiller/jsonapi-parse.git#5-missing-meta-properties",
     "vue": "^2.4.4"
   },
   "devDependencies": {
